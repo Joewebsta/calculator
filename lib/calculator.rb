@@ -83,7 +83,14 @@ loop do
   end
 
   prompt display_operation_types
-  operation_num = gets.chomp
+
+  operation_num = nil
+  loop do
+    operation_num = gets.chomp
+    break if operation_num =~ /[1-4]/
+
+    prompt 'Please provide a number between 1-4.'
+  end
 
   result = perform_operation(operation_num, num1, num2)
   symbol = operation_symbol(operation_num)
