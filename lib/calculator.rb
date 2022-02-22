@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+def prompt(msg)
+  puts "=> #{msg}"
+end
+
 def add(num1, num2)
   num1 + num2
 end
@@ -13,7 +17,7 @@ def multiply(num1, num2)
 end
 
 def divide(num1, num2)
-  num1 / num2
+  num1.to_f / num2
 end
 
 def display_operation_types
@@ -48,16 +52,16 @@ def display_result(num1, num2, symbol, result)
   "#{num1} #{symbol} #{num2} is #{result}."
 end
 
-puts 'What is your first number?'
+prompt 'What is your first number?'
 num1 = gets.chomp.to_i
 
-puts 'What is your second number?'
+prompt 'What is your second number?'
 num2 = gets.chomp.to_i
 
-puts display_operation_types
+prompt display_operation_types
 operation = gets.chomp
 
 result = perform_operation(operation, num1, num2)
 symbol = operation_symbol(operation)
 
-puts display_result(num1, num2, symbol, result)
+prompt display_result(num1, num2, symbol, result)
