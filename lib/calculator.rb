@@ -30,8 +30,11 @@ def display_operation_types
   OPERATION
 end
 
-def perform_operation(operation, num1, num2)
-  case operation
+def perform_operation(operation_num, num1, num2)
+  num1 = num1.to_i
+  num2 = num2.to_i
+
+  case operation_num
   when '1' then add(num1, num2)
   when '2' then subtract(num1, num2)
   when '3' then multiply(num1, num2)
@@ -39,8 +42,8 @@ def perform_operation(operation, num1, num2)
   end
 end
 
-def operation_symbol(operation)
-  case operation
+def operation_symbol(operation_num)
+  case operation_num
   when '1' then '+'
   when '2' then '-'
   when '3' then '*'
@@ -52,16 +55,34 @@ def display_result(num1, num2, symbol, result)
   "#{num1} #{symbol} #{num2} is #{result}."
 end
 
-prompt 'What is your first number?'
-num1 = gets.chomp.to_i
+def valid_number?(num)
+  num =~ /[0-9]+/
+end
 
-prompt 'What is your second number?'
-num2 = gets.chomp.to_i
+num1 = nil
+loop do
+  prompt 'What is your first number?'
+  num1 = gets.chomp
+
+  break if valid_number?(num1)
+
+  prompt 'Please provide a valid number.'
+end
+
+num2 = nil
+loop do
+  prompt 'What is your second number?'
+  num2 = gets.chomp
+
+  break if valid_number?(num2)
+
+  prompt 'Please provide a valid number.'
+end
 
 prompt display_operation_types
-operation = gets.chomp
+operation_num = gets.chomp
 
-result = perform_operation(operation, num1, num2)
-symbol = operation_symbol(operation)
+result = perform_operation(operation_num, num1, num2)
+symbol = operation_symbol(operation_num)
 
 prompt display_result(num1, num2, symbol, result)
