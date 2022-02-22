@@ -1,23 +1,25 @@
 # frozen_string_literal: true
 
+class Calculator
+  def self.add(num1, num2)
+    num1 + num2
+  end
+
+  def self.subtract(num1, num2)
+    num1 - num2
+  end
+
+  def multiply(num1, num2)
+    num1 * num2
+  end
+
+  def divide(num1, num2)
+    num1.to_f / num2
+  end
+end
+
 def prompt(msg)
   puts "=> #{msg}"
-end
-
-def add(num1, num2)
-  num1 + num2
-end
-
-def subtract(num1, num2)
-  num1 - num2
-end
-
-def multiply(num1, num2)
-  num1 * num2
-end
-
-def divide(num1, num2)
-  num1.to_f / num2
 end
 
 def display_operation_types
@@ -35,10 +37,10 @@ def perform_operation(operation_num, num1, num2)
   num2 = num2.to_i
 
   case operation_num
-  when '1' then add(num1, num2)
-  when '2' then subtract(num1, num2)
-  when '3' then multiply(num1, num2)
-  when '4' then divide(num1, num2)
+  when '1' then Calculator.add(num1, num2)
+  when '2' then Calculator.subtract(num1, num2)
+  when '3' then Calculator.multiply(num1, num2)
+  when '4' then Calculator.divide(num1, num2)
   end
 end
 
