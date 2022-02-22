@@ -59,30 +59,40 @@ def valid_number?(num)
   num =~ /[0-9]+/
 end
 
-num1 = nil
+prompt 'Welcome to The Simple Calculator'
+
 loop do
-  prompt 'What is your first number?'
-  num1 = gets.chomp
+  num1 = nil
+  loop do
+    prompt 'What is your first number?'
+    num1 = gets.chomp
 
-  break if valid_number?(num1)
+    break if valid_number?(num1)
 
-  prompt 'Please provide a valid number.'
+    prompt 'Please provide a valid number.'
+  end
+
+  num2 = nil
+  loop do
+    prompt 'What is your second number?'
+    num2 = gets.chomp
+
+    break if valid_number?(num2)
+
+    prompt 'Please provide a valid number.'
+  end
+
+  prompt display_operation_types
+  operation_num = gets.chomp
+
+  result = perform_operation(operation_num, num1, num2)
+  symbol = operation_symbol(operation_num)
+
+  prompt display_result(num1, num2, symbol, result)
+
+  prompt 'Would you like to perform another calculation?'
+  answer = gets.chomp
+  break unless answer =~ /^y.*/i
 end
 
-num2 = nil
-loop do
-  prompt 'What is your second number?'
-  num2 = gets.chomp
-
-  break if valid_number?(num2)
-
-  prompt 'Please provide a valid number.'
-end
-
-prompt display_operation_types
-operation_num = gets.chomp
-
-result = perform_operation(operation_num, num1, num2)
-symbol = operation_symbol(operation_num)
-
-prompt display_result(num1, num2, symbol, result)
+prompt 'Thank you for using The Simple Calculator'
