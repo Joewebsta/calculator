@@ -55,7 +55,7 @@ class CalculationSession
   end
 
   def valid_number?(num)
-    num =~ /[0-9]+/
+    num =~ /^-?\d+$/
   end
 
   def display_calculation_types
